@@ -46,6 +46,10 @@ class ReactStreetview extends React.Component {
 	}
 
 	render () {
+		if (this.streetView) {
+			console.log("Rendering " + this.props.position)
+			this.streetView.setPosition(this.props.position);
+		  }
 		return <div
 			style = {{
 				height: '100%'
@@ -58,7 +62,9 @@ ReactStreetview.propTypes = {
 	apiKey: PropTypes.string.isRequired,
 	streetViewPanoramaOptions: PropTypes.object.isRequired,
 	onPositionChanged: PropTypes.func,
-	onPovChanged: PropTypes.func
+	onPovChanged: PropTypes.func,
+	position: PropTypes.object,
+
 };
 
 ReactStreetview.defaultProps = {
@@ -66,7 +72,7 @@ ReactStreetview.defaultProps = {
 		position: {lat: 46.9171876, lng: 17.8951832},
 		pov: {heading: 0, pitch: 0},
 		zoom: 1
-	}
+	},
 };
 
 function mapScriptsToProps (props) {
